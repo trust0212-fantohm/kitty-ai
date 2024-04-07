@@ -30,7 +30,7 @@ const tabs = [
     ],
   },
   {
-    label: 'BNB Smart Chain',
+    label: 'BNB',
     icon: BscLogo,
     tokens: [
       { label: 'BNB', icon: BscLogo },
