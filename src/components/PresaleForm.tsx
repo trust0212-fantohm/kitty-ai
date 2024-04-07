@@ -126,7 +126,7 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
           ))}
         </ul>
       </div>
-      <p className='text-center text-sm font-bold'>1 MRL = $ 0.31</p>
+      <p className='text-center text-sm font-bold'>1 $Kitty = $ 0.31</p>
       <div className='flex gap-1'>
         <label htmlFor={id1} className='block w-full space-y-1'>
           <p className='text-sm'>Pay with ETH</p>
@@ -138,7 +138,7 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
           />
         </label>
         <label htmlFor={id2} className='block w-full space-y-1'>
-          <p className='text-sm'>Receive MRL</p>
+          <p className='text-sm'>Receive $Kitty</p>
           <input
             type='text'
             className='w-full rounded border border-primary/50 px-3 py-2 text-sm transition-all duration-200 ease-in-out focus:border-primary'
