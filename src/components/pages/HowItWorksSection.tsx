@@ -5,7 +5,7 @@ import { inter, shantell } from '@/app/fonts'
 import KittyStepImage1 from '@/assets/images/kittyai-step1.png'
 import KittyStepImage2 from '@/assets/images/kittyai-step2.png'
 import KittyStepImage3 from '@/assets/images/kittyai-step3.png'
-import KittyStepImage4 from '@/assets/images/kittyai-step4.jpg'
+import KittyStepImage4 from '@/assets/images/kittyai-step4.png'
 
 interface Props {
   className?: string
@@ -31,7 +31,7 @@ const steps = [
       'Broadcast your creation to X. Garner likes, laughs, and loyalty as your meme captivates cat enthusiasts and meme lovers alike',
   },
   {
-    image: KittyStepImage3,
+    image: KittyStepImage4,
     title: 'Collect your $KITTY',
     description:
       "As your meme wins hearts, you'll earn points that magically transform into $KITTY tokens The more you engage, the more you earn",

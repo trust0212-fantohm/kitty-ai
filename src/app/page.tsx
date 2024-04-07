@@ -6,6 +6,7 @@ import HeroSection from '@/components/pages/HeroSection'
 import HowItWorksSection from '@/components/pages/HowItWorksSection'
 import Kittynomics from '@/components/pages/KittynomicsSection'
 import ReadMoreSection from '@/components/pages/ReadMoreSection'
+import RoadmapSection from '@/components/pages/RoadmapSection'
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
       <ReadMoreSection />
       <HowItWorksSection />
       <Kittynomics />
-      <AboutSection />
+      <RoadmapSection />
       <FAQsSection />
     </div>
   )

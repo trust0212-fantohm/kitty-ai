@@ -5,6 +5,7 @@ import cx from 'classnames'
 const socials = [
   { href: 'https://t.me/KittyAICommunity', icon: 'bxl:telegram' },
   { href: 'https://twitter.com/KittyAIMeme', icon: 'ri:twitter-x-fill' },
+  { href: 'mailto:Info@KittyAI.io', icon: 'mynaui:envelope' },
 ]
 
 interface Props {

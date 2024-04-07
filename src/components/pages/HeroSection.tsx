@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import cx from 'classnames'
-import KittyHeroImage from '@/assets/images/two-cats.png'
+import KittyHeroImage from '@/assets/images/kitty-hero2.png'
 import PresaleForm from '@/components/PresaleForm'
 
 interface Props {

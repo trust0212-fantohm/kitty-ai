@@ -16,8 +16,7 @@ const ReadMoreSection: React.FC<Props> = ({ className }) => {
           <p className={cx('text-xl md:text-center', inter.className)}>
             Embark on a galactic crusade with Kitty AI, Where we wield humor as
             our weapon and $Kitty tokens as our shield against the empire of the
-            munadane. $kitty tokens as our shield against the empire of the
-            mundane.
+            munadane.
           </p>
           <button
             className={cx(

@@ -8,7 +8,7 @@ const links = [
   { id: 'hero', label: 'Presale' },
   { id: 'howItWorks', label: 'How it Works' },
   { id: 'kittynomics', label: 'Kittynomics' },
-  { id: 'about', label: 'About' },
+  { id: 'roadmap', label: 'Roadmap' },
   { id: 'faq', label: 'FAQs' },
 ]
 
