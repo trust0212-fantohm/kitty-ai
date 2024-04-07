@@ -16,7 +16,7 @@ const HeroSection: React.FC<Props> = ({ className }) => {
         className,
       )}
     >
-      <div className='container relative flex h-screen !max-w-[1536px] items-center justify-around gap-12 pt-20 md:h-fit md:flex-col xs:gap-4'>
+      <div className='container relative flex !max-w-[1536px] items-center justify-around gap-12 pt-20 md:flex-col xs:gap-4'>
         <Image
           src={KittyHeroImage}
           alt='Kitty Hero'
@@ -26,7 +26,7 @@ const HeroSection: React.FC<Props> = ({ className }) => {
         />
         <PresaleForm className='md:z-10' />
       </div>
-      <div className='pointer-events-none absolute bottom-0 h-20 w-full bg-gradient-to-b from-transparent via-primary/50 to-primary' />
+      <div className='pointer-events-none absolute -bottom-px h-20 w-full bg-gradient-to-b from-transparent via-primary/50 to-primary' />
     </section>
   )
 }
