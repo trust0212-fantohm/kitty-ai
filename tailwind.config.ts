@@ -23,6 +23,15 @@ const config: Config = {
       colors: {
         primary: '#1976d2',
       },
+      keyframes: {
+        spinhorizon: {
+          // '0%': { transform: 'rotateY(0deg)' },
+          '100%': { transform: 'rotateY(360deg)' },
+        },
+      },
+      animation: {
+        spinhorizon: 'spinhorizon 3s linear  infinite',
+      },
     },
   },
   plugins: [],

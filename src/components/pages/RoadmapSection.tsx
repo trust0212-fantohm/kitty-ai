@@ -1,9 +1,14 @@
+import Image from 'next/image'
 import cx from 'classnames'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { inter, shantell } from '@/app/fonts'
+import TokenImage1 from '@/assets/images/kittyai-token-2.png'
+import TokenImage2 from '@/assets/images/kittyai-token-3.png'
+import TokenImage3 from '@/assets/images/kittyai-token-4.png'
+import TokenImage4 from '@/assets/images/kittyai-token-5.png'
 
 interface Props {
   className?: string
@@ -11,6 +16,7 @@ interface Props {
 
 const roadmap = [
   {
+    image: TokenImage1,
     title: 'THE DAWN OF $KITTY',
     actions: [
       { title: '$KITTY Presale', description: 'Grab your tokens early' },
@@ -25,6 +31,7 @@ const roadmap = [
     ],
   },
   {
+    image: TokenImage2,
     title: 'MEME MAGIC',
     actions: [
       {
@@ -39,6 +46,7 @@ const roadmap = [
     ],
   },
   {
+    image: TokenImage3,
     title: 'GRAND LAUNCH',
     actions: [
       {
@@ -53,6 +61,7 @@ const roadmap = [
     ],
   },
   {
+    image: TokenImage4,
     title: 'GALACTIC MISSIONS',
     actions: [
       {
@@ -67,7 +76,7 @@ const roadmap = [
 const RoadmapSection: React.FC<Props> = ({ className }) => {
   return (
     <section id='roadmap' className={cx('bg-gray-900', className)}>
-      <div className='container !max-w-[1440px] space-y-20 py-20 md:space-y-12 md:py-12'>
+      <div className='container !max-w-[1440px] space-y-12 py-20 md:space-y-12 md:py-4'>
         <h2 className='text-center text-primary'>Roadmap</h2>
         <Swiper
           slidesPerView='auto'
@@ -79,6 +88,18 @@ const RoadmapSection: React.FC<Props> = ({ className }) => {
         >
           {roadmap.map((step, i) => (
             <SwiperSlide className='!w-80 space-y-4 text-center' key={i}>
+              <div
+                className='animate-spinhorizon mx-auto w-fit [transform-style:preserve-3d]'
+                style={{ animationDelay: i * 300 + 'ms' }}
+              >
+                <Image
+                  src={step.image}
+                  alt='Step'
+                  width={80}
+                  height={80}
+                  className='[transform:translateZ(0rem)]'
+                />
+              </div>
               <p
                 className={cx(
                   'mx-auto w-fit rounded-full bg-primary px-4 py-1 text-xl font-bold',
@@ -94,7 +115,7 @@ const RoadmapSection: React.FC<Props> = ({ className }) => {
                 {step.actions.map((action) => (
                   <li className={cx('', inter.className)} key={action.title}>
                     <p className='text-lg font-bold'>{action.title}</p>
-                    <p className='text-sm text-gray-300'>
+                    <p className='mx-auto max-w-60 text-sm text-gray-300'>
                       {action.description}
                     </p>
                   </li>
