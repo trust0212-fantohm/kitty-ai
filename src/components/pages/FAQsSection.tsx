@@ -57,7 +57,13 @@ const faqs = [
 
 const FAQsSection: React.FC<Props> = ({ className }) => {
   return (
-    <section id='faq' className={cx('bg-primary', className)}>
+    <section
+      id='faq'
+      className={cx(
+        "bg-primary bg-[url('/images/faq.png')] bg-cover bg-top",
+        className,
+      )}
+    >
       <div className='container space-y-10 py-16 md:space-y-8 md:py-12'>
         <motion.h2 className='text-center' {...fadeInMotion}>
           FAQs
@@ -86,7 +92,7 @@ const FAQsSection: React.FC<Props> = ({ className }) => {
                   y: -50,
                   opacity: 0,
                 },
-                visible: {  
+                visible: {
                   y: 0,
                   opacity: 1,
                 },
