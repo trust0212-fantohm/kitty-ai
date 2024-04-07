@@ -36,7 +36,7 @@ const Kittynomics: React.FC<Props> = ({ className }) => {
               shantell.className,
             )}
           >
-            Dive into the universe of Kitty AI, where the @KITTY token reigns
+            Dive into the universe of Kitty AI, where the $KITTY token reigns
             supreme
           </p>
         </div>

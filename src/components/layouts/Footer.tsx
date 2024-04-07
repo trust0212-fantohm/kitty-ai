@@ -12,7 +12,7 @@ import Socials from '@/components/Socials'
 const Footer = () => {
   return (
     <footer className='bg-gray-900'>
-      <div className='container space-y-10 py-10 md:py-4 md:space-y-4'>
+      <div className='container  py-10 md:py-4'>
         <div className='flex justify-between gap-4 md:flex-col md:items-center'>
           <Link href='/' className='flex flex-shrink-0 items-center'>
             {/* <Image
@@ -21,15 +21,15 @@ const Footer = () => {
               width={100}
               height={100}
               className='sm:h-20 sm:w-20'
-            />
-            <Image src={Logo} alt='Logo' width={150} height={50} /> */}
-            <Image
+            /> */}
+            <Image src={Logo} alt='Logo' width={150} height={50} />
+            {/* <Image
               src={KittyTokenImage2}
               alt='Kitty AI Token'
               width={100}
               height={100}
               className='sm:h-20 sm:w-20'
-            />
+            /> */}
           </Link>
           <div className='flex items-center gap-8'>
             <div>
@@ -43,7 +43,19 @@ const Footer = () => {
         </div>
         <p
           className={cx(
-            'text-center text-sm font-light underline',
+            'pt-5 mt-5 text-center text-xs border-t border-white/50',
+            inter.className,
+          )}
+        >
+          Investing in cryptocurrencies and blockchain projects involves a high
+          degree of risk, and there may be the potential for loss of your
+          investment. Kitty AI is not responsible for any decisions made by
+          visitors based on the information provided on this website or in any
+          of our communications.
+        </p>
+        <p
+          className={cx(
+            'pt-5 text-center text-sm font-light underline',
             inter.className,
           )}
         >

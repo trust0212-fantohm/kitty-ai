@@ -16,19 +16,22 @@ const characters = [
     avatar: AboutImage1,
     name: 'Commander Whiskerbyte',
     description:
-      "Born on a mining colony orbiting a gas giant, Whiskerbyte quickly learned to navigate both the physical and digital frontier.<br /><br />A former space force commander turned rogue hacker, he's wanted in several star systems for cybercrimes against corrupt corporations.<br /><br />Despite his gruff exterior, he follows a strict code of honor and only takes on jobs that align with his principles.<br /><br />Whiskerbyte is on a personal quest to dismantle the digital empire of the syndicate that betrayed him.",
+      'Born on a mining colony orbiting a gas giant, Whiskerbyte quickly learned to navigate both the physical and digital frontier.',
+    // "Born on a mining colony orbiting a gas giant, Whiskerbyte quickly learned to navigate both the physical and digital frontier.<br /><br />A former space force commander turned rogue hacker, he's wanted in several star systems for cybercrimes against corrupt corporations.<br /><br />Despite his gruff exterior, he follows a strict code of honor and only takes on jobs that align with his principles.<br /><br />Whiskerbyte is on a personal quest to dismantle the digital empire of the syndicate that betrayed him.",
   },
   {
     avatar: AboutImage2,
     name: 'Saga Pawsia',
     description:
-      "Pawsia hails from a planet known for its vast libraries and ancient monasteries.<br /><br />Once a guardian of knowledge, her life took a turn when a mysterious artifact fell into her hands, leading her on an interstellar journey.<br /><br />Sage Pawsia is now a renowned mediator who can soothe tense negotiations with her presence alone.Despite her peaceful demeanor, she's skilled in several martial arts, using them only when diplomacy fails.",
+      'Pawsia hails from a planet known for its vast libraries and ancient monasteries.',
+    // "Pawsia hails from a planet known for its vast libraries and ancient monasteries.<br /><br />Once a guardian of knowledge, her life took a turn when a mysterious artifact fell into her hands, leading her on an interstellar journey.<br /><br />Sage Pawsia is now a renowned mediator who can soothe tense negotiations with her presence alone.Despite her peaceful demeanor, she's skilled in several martial arts, using them only when diplomacy fails.",
   },
   {
     avatar: AboutImage3,
     name: 'Scarlet Furtale',
     description:
-      "The enigmatic Scarlet Furtale grew up amidst the neon-lit alleys of a bustling spaceport bazaar.<br /><br />With a wink and a smile, she charmed secrets out of the most tight-lipped travelers.<br /><br />Known for her agility and wit, Scarlet now operates as a bounty hunter with a knack for finding people who don't want to be found.<br /><br />While she may seem carefree, she's on a personal mission to find the legendary songstress who saved her from a life of poverty.",
+      'The enigmatic Scarlet Furtale grew up amidst the neon-lit alleys of a bustling spaceport bazaar.',
+    // "The enigmatic Scarlet Furtale grew up amidst the neon-lit alleys of a bustling spaceport bazaar.<br /><br />With a wink and a smile, she charmed secrets out of the most tight-lipped travelers.<br /><br />Known for her agility and wit, Scarlet now operates as a bounty hunter with a knack for finding people who don't want to be found.<br /><br />While she may seem carefree, she's on a personal mission to find the legendary songstress who saved her from a life of poverty.",
   },
 ]
 
@@ -43,7 +46,7 @@ const AboutSection: React.FC<Props> = ({ className }) => {
           {characters.map((character, i) => (
             <motion.div
               className={cx(
-                'flex gap-8 sm:flex-col sm:items-center',
+                'flex items-center gap-8 sm:flex-col sm:items-center',
                 i % 2 === 1 ? 'flex-row-reverse' : '',
               )}
               key={i}
@@ -65,8 +68,8 @@ const AboutSection: React.FC<Props> = ({ className }) => {
               <Image
                 src={character.avatar}
                 alt={`Character ${i}`}
-                width={240}
-                height={240}
+                width={200}
+                height={200}
                 className='h-fit rounded-full'
               />
               <div className='space-y-4'>

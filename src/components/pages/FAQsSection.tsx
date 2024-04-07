@@ -60,7 +60,7 @@ const FAQsSection: React.FC<Props> = ({ className }) => {
     <section
       id='faq'
       className={cx(
-        "bg-primary bg-[url('/images/faq.png')] bg-cover bg-top",
+        "bg-primary bg-[url('/images/faq.png')] bg-cover",
         className,
       )}
     >
