@@ -16,13 +16,13 @@ const HeroSection: React.FC<Props> = ({ className }) => {
         className,
       )}
     >
-      <div className='container relative flex h-screen items-center justify-around pt-20 md:h-fit md:flex-col gap-12 xs:gap-4'>
+      <div className='container relative flex h-screen !max-w-[1536px] items-center justify-around gap-12 pt-20 md:h-fit md:flex-col xs:gap-4'>
         <Image
           src={KittyHeroImage}
           alt='Kitty Hero'
-          width={640}
+          width={896}
           height={640}
-          className='lg:w-[480px] md:w-96 xs:w-64'
+          className='lg:w-[576px] md:w-[480px] xs:w-80'
         />
         <PresaleForm className='md:z-10' />
       </div>
