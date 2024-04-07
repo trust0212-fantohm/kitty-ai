@@ -6,7 +6,6 @@ import KittyStepImage1 from '@/assets/images/kittyai-step1.png'
 import KittyStepImage2 from '@/assets/images/kittyai-step2.png'
 import KittyStepImage3 from '@/assets/images/kittyai-step3.png'
 import KittyStepImage4 from '@/assets/images/kittyai-step4.jpg'
-import { fadeInMotion, fadeLeftMotion } from '@/config/motion'
 
 interface Props {
   className?: string
@@ -31,12 +30,18 @@ const steps = [
     description:
       'Broadcast your creation to X. Garner likes, laughs, and loyalty as your meme captivates cat enthusiasts and meme lovers alike',
   },
+  {
+    image: KittyStepImage3,
+    title: 'Collect your $KITTY',
+    description:
+      "As your meme wins hearts, you'll earn points that magically transform into $KITTY tokens The more you engage, the more you earn",
+  },
 ]
 
 const HowItWorksSection: React.FC<Props> = ({ className }) => {
   return (
     <motion.section id='howItWorks' className={cx('bg-gray-900', className)}>
-      <div className='container space-y-20 py-20 md:space-y-12 md:py-12'>
+      <div className='container space-y-12 py-20 md:space-y-8 md:py-12'>
         <motion.div
           className='space-y-4 md:space-y-2'
           initial='hidden'
@@ -88,7 +93,7 @@ const HowItWorksSection: React.FC<Props> = ({ className }) => {
           </motion.h2>
         </motion.div>
         <motion.div
-          className='flex flex-wrap justify-evenly gap-12'
+          className='grid grid-cols-4 gap-12 md:grid-cols-2 xs:grid-cols-1'
           initial='hidden'
           whileInView='visible'
           viewport={{ amount: 0.2, once: true }}
@@ -105,7 +110,7 @@ const HowItWorksSection: React.FC<Props> = ({ className }) => {
         >
           {steps.map((step, i) => (
             <motion.div
-              className='relative flex w-80 flex-col items-center '
+              className='relative flex flex-col items-center '
               key={i}
               variants={{
                 hidden: {
@@ -118,14 +123,14 @@ const HowItWorksSection: React.FC<Props> = ({ className }) => {
                 },
               }}
             >
-              <p className='absolute left-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-xl font-bold text-primary'>
+              <p className='absolute left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-lg font-bold text-primary'>
                 {i + 1}
               </p>
               <Image
                 src={step.image}
                 alt={`Step Image ${i}`}
-                width={320}
-                height={320}
+                width={240}
+                height={240}
                 className='aspect-square rounded-xl object-cover'
               />
               <p
@@ -146,7 +151,7 @@ const HowItWorksSection: React.FC<Props> = ({ className }) => {
               </p>
             </motion.div>
           ))}
-          <motion.div
+          {/* <motion.div
             className='relative flex w-80 flex-col justify-center'
             variants={{
               hidden: {
@@ -192,8 +197,9 @@ const HowItWorksSection: React.FC<Props> = ({ className }) => {
             <p className='mt-12 text-center text-2xl font-bold'>
               100 points = 1 $KITTY
             </p>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
+        <p className='text-center text-2xl font-bold'>100 points = 1 $KITTY</p>
       </div>
     </motion.section>
   )
