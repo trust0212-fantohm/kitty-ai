@@ -10,4 +10,5 @@ export const orbitron = Orbitron({
 export const shantell = Shantell_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
+  display: 'swap'
 })
