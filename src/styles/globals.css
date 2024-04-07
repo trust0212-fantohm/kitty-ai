@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply text-white;
+}
+
+.container {
+  @apply mx-auto w-full max-w-7xl px-5;
+}
+
+h2 {
+  @apply text-5xl font-black md:text-4xl;
+}
+
+input,
+select,
+textarea {
+  @apply outline-none;
+}
