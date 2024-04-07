@@ -29,8 +29,13 @@ const Navbar: React.FC<Props> = ({ className }) => {
   }
 
   return (
-    <nav className={cx('flex items-center gap-8 md:gap-4', className)}>
-      <ul className={cx('flex gap-8 md:hidden', className)}>
+    <nav
+      className={cx(
+        'flex w-full items-center gap-8 md:justify-end md:gap-4',
+        className,
+      )}
+    >
+      <ul className={cx('mx-auto flex gap-8 md:hidden', className)}>
         {links.map((link) => (
           <li
             className={cx(

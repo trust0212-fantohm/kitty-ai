@@ -15,14 +15,14 @@ const Footer = () => {
       <div className='container space-y-10 py-10 md:py-4 md:space-y-4'>
         <div className='flex justify-between gap-4 md:flex-col md:items-center'>
           <Link href='/' className='flex flex-shrink-0 items-center'>
-            <Image
+            {/* <Image
               src={KittyTokenImage1}
               alt='Kitty AI Token'
               width={100}
               height={100}
               className='sm:h-20 sm:w-20'
             />
-            <Image src={Logo} alt='Logo' width={150} height={50} />
+            <Image src={Logo} alt='Logo' width={150} height={50} /> */}
             <Image
               src={KittyTokenImage2}
               alt='Kitty AI Token'
