@@ -5,6 +5,7 @@ import 'swiper/css/pagination'
 import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { inter, shantell } from '@/app/fonts'
+import Kitty from '@/assets/images/kitty2.png'
 import TokenImage1 from '@/assets/images/kittyai-token-2.png'
 import TokenImage2 from '@/assets/images/kittyai-token-3.png'
 import TokenImage3 from '@/assets/images/kittyai-token-4.png'
@@ -75,7 +76,13 @@ const roadmap = [
 
 const RoadmapSection: React.FC<Props> = ({ className }) => {
   return (
-    <section id='roadmap' className={cx('bg-gray-900', className)}>
+    <section id='roadmap' className={cx('relative bg-gray-900', className)}>
+      <Image
+        src={Kitty}
+        alt='Kitty'
+        width={600}
+        className='absolute bottom-0 left-1/2 -translate-x-1/2 opacity-20 md:w-96'
+      />
       <div className='container !max-w-[1440px] space-y-12 py-20 md:space-y-12 md:py-4'>
         <h2 className='text-center text-primary'>Roadmap</h2>
         <Swiper
@@ -89,7 +96,7 @@ const RoadmapSection: React.FC<Props> = ({ className }) => {
           {roadmap.map((step, i) => (
             <SwiperSlide className='!w-80 space-y-4 text-center' key={i}>
               <div
-                className='animate-spinhorizon mx-auto w-fit [transform-style:preserve-3d]'
+                className='mx-auto w-fit animate-spinhorizon [transform-style:preserve-3d]'
                 style={{ animationDelay: i * 300 + 'ms' }}
               >
                 <Image

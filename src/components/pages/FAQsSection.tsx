@@ -1,5 +1,8 @@
+import Image from 'next/image'
 import cx from 'classnames'
 import { motion } from 'framer-motion'
+import Girl2 from '@/assets/images/kitty-girl2.png'
+import Girl1 from '@/assets/images/kitty-girl.png'
 import FAQ from '@/components/FAQ'
 import { fadeInMotion } from '@/config/motion'
 
@@ -60,11 +63,23 @@ const FAQsSection: React.FC<Props> = ({ className }) => {
     <section
       id='faq'
       className={cx(
-        "bg-primary bg-[url('/images/faq.png')] bg-cover",
+        "relative bg-primary bg-[url('/images/faq.png')] bg-cover",
         className,
       )}
     >
-      <div className='container space-y-10 py-16 md:space-y-8 md:py-12'>
+      <Image
+        src={Girl1}
+        alt='Girl1'
+        width={448}
+        className='absolute bottom-0 left-0 translate-x-1/4 -scale-x-100 lg:hidden'
+      />
+      <Image
+        src={Girl2}
+        alt='Girl2'
+        width={448}
+        className='absolute bottom-0 right-0 -translate-x-1/4 lg:hidden'
+      />
+      <div className='container relative z-10 space-y-10 py-16 md:space-y-8 md:py-12'>
         <motion.h2 className='text-center' {...fadeInMotion}>
           FAQs
         </motion.h2>

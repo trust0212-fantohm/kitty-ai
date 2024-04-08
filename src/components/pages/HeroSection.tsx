@@ -26,7 +26,7 @@ const HeroSection: React.FC<Props> = ({ className }) => {
         />
         <PresaleForm className='md:z-10' />
       </div>
-      <div className='pointer-events-none absolute -bottom-px h-20 w-full bg-gradient-to-b from-transparent via-primary/50 to-primary' />
+      <div className='pointer-events-none absolute -bottom-px h-40 w-full bg-gradient-to-b from-transparent via-gray-900/70 to-gray-900' />
     </section>
   )
 }

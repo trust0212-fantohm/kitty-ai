@@ -7,7 +7,7 @@ interface Props {
 
 const ReadMoreSection: React.FC<Props> = ({ className }) => {
   return (
-    <section className={cx('relative bg-primary', className)}>
+    <section className={cx('relative bg-gray-900', className)}>
       <div className='container flex !max-w-5xl gap-20 py-20 md:flex-col md:gap-8 md:py-12'>
         <h2 className='max-w-64 md:max-w-none md:text-center'>
           MEMES CATS + AI
