@@ -10,7 +10,13 @@ interface Props {
 
 const Kittynomics: React.FC<Props> = ({ className }) => {
   return (
-    <section id='kittynomics' className={cx('bg-primary', className)}>
+    <section
+      id='kittynomics'
+      className={cx(
+        "bg-[url('/images/bg1.png')] bg-cover bg-center",
+        className,
+      )}
+    >
       <motion.div
         className='container space-y-20 py-20 md:space-y-12 md:py-12'
         initial='hidden'
@@ -29,10 +35,10 @@ const Kittynomics: React.FC<Props> = ({ className }) => {
         }}
       >
         <div className='space-y-4 md:space-y-2'>
-          <h2 className='text-center'>$Kittynomics</h2>
+          <h2 className='text-center text-black'>$Kittynomics</h2>
           <p
             className={cx(
-              'text-center text-2xl font-semibold md:text-lg',
+              'text-center text-2xl font-semibold text-black md:text-lg',
               shantell.className,
             )}
           >
