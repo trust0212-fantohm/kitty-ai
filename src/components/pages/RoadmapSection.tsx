@@ -83,7 +83,7 @@ const RoadmapSection: React.FC<Props> = ({ className }) => {
         width={600}
         className='absolute bottom-0 left-1/2 -translate-x-1/2 opacity-20 md:w-96'
       />
-      <div className='container !max-w-[1440px] space-y-12 py-20 md:space-y-12 md:py-4'>
+      <div className='container !max-w-[1440px] space-y-12 relative z-10 py-20 md:space-y-12 md:py-4'>
         <h2 className='text-center text-primary'>Roadmap</h2>
         <Swiper
           slidesPerView='auto'
