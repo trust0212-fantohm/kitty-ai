@@ -56,7 +56,7 @@ const roadmap = [
           'With the curtains rising and the meme generator making its grand debut, your comedic playground awaits',
       },
       {
-        title: 'Early Daily!',
+        title: 'Earn Daily!',
         description: 'Every share, laugh, and like brings rewards',
       },
     ],
