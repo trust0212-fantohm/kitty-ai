@@ -12,7 +12,7 @@ import Socials from '@/components/Socials'
 const Footer = () => {
   return (
     <footer className='bg-gray-900'>
-      <div className='container  py-10 md:py-4'>
+      <div className='container py-10 pt-4 md:py-4'>
         <div className='flex justify-between gap-4 md:flex-col md:items-center'>
           <Link href='/' className='flex flex-shrink-0 items-center'>
             {/* <Image
@@ -23,13 +23,12 @@ const Footer = () => {
               className='sm:h-20 sm:w-20'
             /> */}
             <Image src={Logo} alt='Logo' width={150} height={50} />
-            {/* <Image
+            <Image
               src={KittyTokenImage2}
               alt='Kitty AI Token'
-              width={100}
-              height={100}
-              className='sm:h-20 sm:w-20'
-            /> */}
+              width={80}
+              height={80}
+            />
           </Link>
           <div className='flex items-center gap-8'>
             <div>
@@ -43,7 +42,7 @@ const Footer = () => {
         </div>
         <p
           className={cx(
-            'pt-5 mt-5 text-center text-xs border-t border-white/50',
+            'pt-5 mt-1 text-center text-xs border-t border-white/50',
             inter.className,
           )}
         >
