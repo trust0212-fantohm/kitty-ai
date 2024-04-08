@@ -67,19 +67,19 @@ const FAQsSection: React.FC<Props> = ({ className }) => {
         className,
       )}
     >
-      <Image
-        src={Girl1}
-        alt='Girl1'
-        width={448}
-        className='absolute bottom-0 left-0 translate-x-1/4 -scale-x-100 lg:hidden'
-      />
-      <Image
-        src={Girl2}
-        alt='Girl2'
-        width={448}
-        className='absolute bottom-0 right-0 -translate-x-1/4 lg:hidden'
-      />
       <div className='container relative z-10 space-y-10 py-16 md:space-y-8 md:py-12'>
+        <Image
+          src={Girl1}
+          alt='Girl1'
+          width={448}
+          className='absolute bottom-0 left-0 -translate-x-1/2 -scale-x-100 lg:hidden'
+        />
+        <Image
+          src={Girl2}
+          alt='Girl2'
+          width={448}
+          className='absolute bottom-0 right-0 translate-x-1/2 lg:hidden'
+        />
         <motion.h2 className='text-center' {...fadeInMotion}>
           FAQs
         </motion.h2>
