@@ -2,6 +2,7 @@ import Image from 'next/image'
 import cx from 'classnames'
 import { motion } from 'framer-motion'
 import { shantell } from '@/app/fonts'
+import IdeaImage from '@/assets/images/idea.png'
 import KittynomicsImage from '@/assets/images/kittynomics.png'
 
 interface Props {
@@ -13,11 +14,19 @@ const Kittynomics: React.FC<Props> = ({ className }) => {
     <section
       id='kittynomics'
       className={cx(
-        "bg-[url('/images/bg1.png')] bg-cover bg-center",
+        'overflow-hidden',
+        // "bg-[url('/images/bg1.png')] bg-cover bg-center",
         className,
       )}
     >
-      <motion.div
+      <Image
+        src={IdeaImage}
+        alt='Kittynomics'
+        width={3840}
+        height={2160}
+        className=''
+      />
+      {/* <motion.div
         className='container space-y-20 py-20 md:space-y-12 md:py-12'
         initial='hidden'
         whileInView='visible'
@@ -53,7 +62,7 @@ const Kittynomics: React.FC<Props> = ({ className }) => {
           height={627}
           className='mx-auto'
         />
-      </motion.div>
+      </motion.div> */}
     </section>
   )
 }
