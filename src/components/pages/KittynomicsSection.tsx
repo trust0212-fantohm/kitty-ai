@@ -2,6 +2,7 @@ import Image from 'next/image'
 import cx from 'classnames'
 import { motion } from 'framer-motion'
 import { shantell } from '@/app/fonts'
+import IdeaImageMobile from '@/assets/images/idea-mobile.png'
 import IdeaImage from '@/assets/images/idea.png'
 import KittynomicsImage from '@/assets/images/kittynomics.png'
 
@@ -24,7 +25,14 @@ const Kittynomics: React.FC<Props> = ({ className }) => {
         alt='Kittynomics'
         width={3840}
         height={2160}
-        className=''
+        className='sm:hidden'
+      />
+      <Image
+        src={IdeaImageMobile}
+        alt='Kittynomics'
+        width={1920}
+        height={1080}
+        className='hidden sm:block'
       />
       {/* <motion.div
         className='container space-y-20 py-20 md:space-y-12 md:py-12'
