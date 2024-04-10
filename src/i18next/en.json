@@ -1,0 +1,298 @@
+[
+  {
+    "Term": "globals.presale",
+    "Definition": "PRESALE"
+  },
+  {
+    "Term": "globals.howItWorks",
+    "Definition": "HOW IT WORKS"
+  },
+  {
+    "Term": "globals.kittynomics",
+    "Definition": "KITTYNOMICS"
+  },
+  {
+    "Term": "globals.roadmap",
+    "Definition": "ROADMAP"
+  },
+  {
+    "Term": "globals.faqs",
+    "Definition": "FAQS"
+  },
+  {
+    "Term": "presaleForm.title",
+    "Definition": "Presale has started"
+  },
+  {
+    "Term": "presaleForm.days",
+    "Definition": "DAYS"
+  },
+  {
+    "Term": "presaleForm.hrs",
+    "Definition": "HRS"
+  },
+  {
+    "Term": "presaleForm.min",
+    "Definition": "MIN"
+  },
+  {
+    "Term": "presaleForm.sec",
+    "Definition": "SEC"
+  },
+  {
+    "Term": "presaleForm.selectChain",
+    "Definition": "Select Chain"
+  },
+  {
+    "Term": "presaleForm.selectToken",
+    "Definition": "Select Token"
+  },
+  {
+    "Term": "presaleForm.payWithEth",
+    "Definition": "Pay With ETH"
+  },
+  {
+    "Term": "presaleForm.receiveKitty",
+    "Definition": "Receive $Kitty"
+  },
+  {
+    "Term": "presaleForm.connectWallet",
+    "Definition": "Connect wallet"
+  },
+  {
+    "Term": "readMore.title",
+    "Definition": "MEMES CATS + AI"
+  },
+  {
+    "Term": "readMore.description",
+    "Definition": "Embark on a galactic crusade with Kitty AI, Where we wield humor as our weapon and $Kitty tokens as our shield against the empire of the munadane."
+  },
+  {
+    "Term": "readMore.readMore",
+    "Definition": "READ MORE"
+  },
+  {
+    "Term": "howItWorks.title",
+    "Definition": "Create, Share, Earn, Repeat"
+  },
+  {
+    "Term": "howItWorks.description",
+    "Definition": "Unleash Your Inner Meme Maker with Kitty AI"
+  },
+  {
+    "Term": "howItWorks.step1.title",
+    "Definition": "Grab the Daily Meme"
+  },
+  {
+    "Term": "howItWorks.step1.description",
+    "Definition": "Every day our AI conjures up a fresh hilarious cat meme template. Begin with our digital canvas and let your humor shine"
+  },
+  {
+    "Term": "howItWorks.step2.title",
+    "Definition": "Craft your Best Caption"
+  },
+  {
+    "Term": "howItWorks.step2.description",
+    "Definition": "Inject your own clever quips or snappy sass to bring the meme to life. Your wit is your wand in the Kitty AI universe"
+  },
+  {
+    "Term": "howItWorks.step3.title",
+    "Definition": "Share to X"
+  },
+  {
+    "Term": "howItWorks.step3.description",
+    "Definition": "Broadcast your creation to X. Garner likes, laughs, and loyalty as your meme captivates cat enthusiasts and meme lovers alike"
+  },
+  {
+    "Term": "howItWorks.step4.title",
+    "Definition": "Collect your $KITTY"
+  },
+  {
+    "Term": "howItWorks.step4.description",
+    "Definition": "As your meme wins hearts, you'll earn points that magically transform into $KITTY tokens The more you engage, the more you earn"
+  },
+  {
+    "Term": "howItWorks.points",
+    "Definition": "points"
+  },
+  {
+    "Term": "howItWorks.kitty",
+    "Definition": "KITTY"
+  },
+  {
+    "Term": "roadmap.phase",
+    "Definition": "PHASE"
+  },
+  {
+    "Term": "roadmap.phase1.title",
+    "Definition": "THE DAWN OF $KITTY"
+  },
+  {
+    "Term": "roadmap.phase1.step1.title",
+    "Definition": "$KITTY Presale"
+  },
+  {
+    "Term": "roadmap.phase1.step1.description",
+    "Definition": "Grab your token early"
+  },
+  {
+    "Term": "roadmap.phase1.step2.title",
+    "Definition": "Build Our Community"
+  },
+  {
+    "Term": "roadmap.phase1.step2.description",
+    "Definition": "Join the early supporters"
+  },
+  {
+    "Term": "roadmap.phase1.step3.title",
+    "Definition": "Strategic Alliances"
+  },
+  {
+    "Term": "roadmap.phase1.step3.description",
+    "Definition": "To sprinkle extra magic on Kitty AI"
+  },
+  {
+    "Term": "roadmap.phase2.title",
+    "Definition": "MEME MAGIC"
+  },
+  {
+    "Term": "roadmap.phase2.step1.title",
+    "Definition": "Devs Do Something"
+  },
+  {
+    "Term": "roadmap.phase2.step1.description",
+    "Definition": "The meme generator will officially be in the dev machine"
+  },
+  {
+    "Term": "roadmap.phase2.step2.title",
+    "Definition": "Start Creating"
+  },
+  {
+    "Term": "roadmap.phase2.step2.description",
+    "Definition": "Gradual integration of $KITTY rewards means your creativity now unlocks perks"
+  },
+  {
+    "Term": "roadmap.phase3.title",
+    "Definition": "GRAND LAUNCH"
+  },
+  {
+    "Term": "roadmap.phase3.step1.title",
+    "Definition": "Let the Funnies Spread"
+  },
+  {
+    "Term": "roadmap.phase3.step1.description",
+    "Definition": "With the curtains rising and the meme generator making it's grand debut, your comedic playground awaits"
+  },
+  {
+    "Term": "roadmap.phase3.step2.title",
+    "Definition": "Earn daily!"
+  },
+  {
+    "Term": "roadmap.phase3.step2.description",
+    "Definition": "Every share, laugh, and like brings rewards"
+  },
+  {
+    "Term": "roadmap.phase4.title",
+    "Definition": "GALACTIC MISSIONS"
+  },
+  {
+    "Term": "roadmap.phase4.step1.title",
+    "Definition": "What is Next"
+  },
+  {
+    "Term": "roadmap.phase4.step1.description",
+    "Definition": "The specialized missions with the Cosmic Comedians will navigate uncharted territories, facing new challenges and opportunities"
+  },
+  {
+    "Term": "faqs.title",
+    "Definition": "FAQs"
+  },
+  {
+    "Term": "faqs.whatIsKittyAi.question",
+    "Definition": "What is Kitty AI?"
+  },
+  {
+    "Term": "faqs.whatIsKittyAi.answer",
+    "Definition": "Kitty AI is an innovative platform that combines the fun of creating and sharing cat memes with the financial incentives of cryptocurrency. By using artificial intelligence, users can generate unique memes and earn $KITTY tokens for their participation and creativity."
+  },
+  {
+    "Term": "faqs.howDoIEarn.question",
+    "Definition": "How do I earn $KITTY tokens?"
+  },
+  {
+    "Term": "faqs.howDoIEarn.answer",
+    "Definition": "You can earn $KITTY tokens by generating memes with our AI tool, sharing them on designated platforms, and engaging with the community. The more your memes are liked, shared, and celebrated, the more tokens you earn."
+  },
+  {
+    "Term": "faqs.doINeedToKnow.question",
+    "Definition": "Do I need to know about cryptocurrencies to use Kitty AI?"
+  },
+  {
+    "Term": "faqs.doINeedToKnow.answer",
+    "Definition": "Not at all! While a basic understanding of cryptocurrencies can enhance your experience, Kitty AI is designed to be user-friendly for both crypto experts and newcomers. We provide all the resources you need to get started."
+  },
+  {
+    "Term": "faqs.isThereACost.question",
+    "Definition": "Is there a cost to join Kitty AI?"
+  },
+  {
+    "Term": "faqs.isThereACost.answer",
+    "Definition": "Once we are completely live, Kitty Ai will be free-for-all. Joining the presale however, unlocks benefits such as earning $KITTY prior to the official launch."
+  },
+  {
+    "Term": "faqs.canIUseKittyAI.question",
+    "Definition": "Can I use Kitty AI on my mobile device?"
+  },
+  {
+    "Term": "faqs.canIUseKittyAI.answer",
+    "Definition": "Yes, Kitty AI will be built to be accessible across various devices, including mobile phones, tablets, and desktop computers."
+  },
+  {
+    "Term": "faqs.howCanIEnsure.question",
+    "Definition": "How can I ensure my created memes are successful?"
+  },
+  {
+    "Term": "faqs.howCanIEnsure.answer",
+    "Definition": "Success depends on creativity and engagement. We recommend studying popular trends, adding a unique twist, and actively participating in the Kitty AI community to improve your memes' reception."
+  },
+  {
+    "Term": "faqs.whatMakesKittyAI.question",
+    "Definition": "What makes Kitty AI different from other meme platforms?"
+  },
+  {
+    "Term": "faqs.whatMakesKittyAI.answer",
+    "Definition": "Kitty AI is unique because it integrates AI-powered meme creation with cryptocurrency rewards. It's not just about sharing content; it's about being part of an economy that values your sense of humor and creativity."
+  },
+  {
+    "Term": "faqs.areMyMemes.question",
+    "Definition": "Are my memes and personal data safe with Kitty AI?"
+  },
+  {
+    "Term": "faqs.areMyMemes.answer",
+    "Definition": "We prioritize the security of our users' data and content. Your memes belong to you, and personal data is handled according to strict privacy policies and industry-standard security measures."
+  },
+  {
+    "Term": "faqs.whatHappensIf.question",
+    "Definition": "What happens if I encounter issues or need support?"
+  },
+  {
+    "Term": "faqs.whatHappensIf.answer",
+    "Definition": "Kitty AI offers a dedicated support team ready to assist you with any issues or questions. You can contact us through our telegram group."
+  },
+  {
+    "Term": "globals.joinKittyAINow",
+    "Definition": "Join Kitty AI Now"
+  },
+  {
+    "Term": "globals.catApultYourEarnings",
+    "Definition": "And Cat-apult Your Earnings to Purr-fection!"
+  },
+  {
+    "Term": "globals.acknowledgement",
+    "Definition": "Investing in cryptocurrencies and blockchain projects involves a high degree of risk, and there may be the potential for loss of your investment. Kitty AI is not responsible for any decisions made by visitors based on the information provided on this website or in any of our communications."
+  },
+  {
+    "Term": "globals.copyright",
+    "Definition": "2024 by Kitty Ai. All rights reserved!"
+  }
+]
