@@ -28,3 +28,7 @@ textarea {
 .swiper-slide {
   @apply w-80;
 }
+
+.swiper-pagination-bullet {
+  @apply !opacity-100 !w-2.5 !h-2.5 shadow-[0px_0px_8px_#fff4];
+}

@@ -83,7 +83,7 @@ const RoadmapSection: React.FC<Props> = ({ className }) => {
         width={600}
         className='absolute bottom-0 left-1/2 -translate-x-1/2 opacity-20 md:w-96'
       />
-      <div className='container !max-w-[1440px] space-y-12 relative z-10 py-20 md:space-y-12 md:pb-4'>
+      <div className='container relative z-10 !max-w-[1440px] space-y-12 py-20 md:space-y-12 md:pb-4'>
         <h2 className='text-center text-primary'>Roadmap</h2>
         <Swiper
           slidesPerView='auto'
@@ -94,7 +94,10 @@ const RoadmapSection: React.FC<Props> = ({ className }) => {
           wrapperClass='mx-auto w-fit pb-8'
         >
           {roadmap.map((step, i) => (
-            <SwiperSlide className='!w-80 space-y-4 text-center' key={i}>
+            <SwiperSlide
+              className='!w-80 space-y-4 text-center sm:!w-[calc(100vw-40px)]'
+              key={i}
+            >
               <div
                 className='mx-auto w-fit animate-spinhorizon [transform-style:preserve-3d]'
                 style={{ animationDelay: i * 300 + 'ms' }}
