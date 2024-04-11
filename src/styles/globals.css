@@ -30,5 +30,13 @@ textarea {
 }
 
 .swiper-pagination-bullet {
-  @apply !opacity-100 !w-2.5 !h-2.5 shadow-[0px_0px_8px_#fff4];
+  @apply !h-2.5 !w-2.5 !opacity-100 shadow-[0px_0px_8px_#fff4];
+}
+
+.wallet-adapter-dropdown {
+  @apply w-full;
+}
+
+.wallet-adapter-dropdown .wallet-adapter-button {
+  @apply flex w-full items-center justify-center bg-primary hover:!bg-primary;
 }

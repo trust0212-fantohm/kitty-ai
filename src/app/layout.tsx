@@ -1,4 +1,8 @@
 import type { Metadata } from 'next'
+import { headers } from 'next/headers'
+import { cookieToInitialState } from 'wagmi'
+import { config } from '@/config/wallet'
+import Web3ModalProvider from '@/contexts/wagmi'
 import '@/styles/globals.css'
 import { orbitron } from './fonts'
 
@@ -15,6 +19,8 @@ export const metadata: Metadata = {
   },
 }
 
+const initialState = cookieToInitialState(config, headers().get('cookie'))
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,7 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={orbitron.className}>{children}</body>
+      <body className={orbitron.className}>
+        <Web3ModalProvider initialState={initialState}>
+          {children}
+        </Web3ModalProvider>
+      </body>
     </html>
   )
 }

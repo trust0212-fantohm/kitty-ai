@@ -1,12 +1,25 @@
-import Image from 'next/image'
-import { useId, useState } from 'react'
-import cx from 'classnames'
-import { motion } from 'framer-motion'
-import BscLogo from '@/assets/images/bsc.png'
-import EthereumLogo from '@/assets/images/ethereum.png'
-import SolanaLogo from '@/assets/images/solana.png'
-import USDTLogo from '@/assets/images/usdt.png'
-import { fadeInMotion } from '@/config/motion'
+import Image from 'next/image';
+import { useEffect, useId, useRef, useState } from 'react';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core';
+import { useWeb3Modal } from '@web3modal/wagmi/react';
+import cx from 'classnames';
+import { motion } from 'framer-motion';
+import { parseEther, parseUnits } from 'viem';
+import { useAccount, useSwitchChain } from 'wagmi';
+import { orbitron } from '@/app/fonts';
+import BscLogo from '@/assets/images/bsc.png';
+import EthereumLogo from '@/assets/images/ethereum.png';
+import SolanaLogo from '@/assets/images/solana.png';
+import USDTLogo from '@/assets/images/usdt.png';
+import { BSC_ADDRESS, ETH_ADDRESS } from '@/config/env';
+import { fadeInMotion } from '@/config/motion';
+import { chains, config } from '@/config/wallet';
+import BnbAbi from '@/contracts/kitty_bnb.abi.json';
+import EthAbi from '@/contracts/kitty_eth.abi.json';
+
 
 interface Props {
   className?: string
@@ -39,11 +52,159 @@ const tabs = [
   },
 ]
 
+const networks: Array<'ETH' | 'SOL' | 'BNB'> = ['ETH', 'SOL', 'BNB']
+
 const PresaleForm: React.FC<Props> = ({ className }) => {
   const [activeTab, setActiveTab] = useState<number>(0)
   const [activeToken, setActiveToken] = useState<number>(0)
+  const [payAmount, setPayAmount] = useState<string>('')
+  const [receiveAmount, setReceiveAmount] = useState<string>('')
+  const [network, setNetwork] = useState<'ETH' | 'SOL' | 'BNB'>('ETH')
   const id1 = useId()
   const id2 = useId()
+  const { open } = useWeb3Modal()
+  const { isConnected, chain } = useAccount()
+  const { switchChain, switchChainAsync } = useSwitchChain()
+  const [loading, setLoading] = useState<boolean>(false)
+  const { connect, connected } = useWallet()
+  const [data, setData] = useState<Record<string, any>>({})
+
+  // useEffect(() => {
+  //   const interval = setInterval(async () => {
+  //     const response = await fetch('http://3.226.79.149:3000/presale_state')
+  //     console.log(response)
+  //     setData(await response.json())
+  //   }, 3000)
+
+  //   return () => clearInterval(interval)
+  // }, [])
+
+  // console.log(data)
+
+  useEffect(() => {
+    if (!isConnected || !chain) {
+      return
+    }
+
+    if (network === 'ETH' && chain.id !== chains[0].id) {
+      switchChain({ chainId: chains[0].id })
+    }
+    if (network === 'BNB' && chain.id !== chains[1].id) {
+      switchChain({ chainId: chains[1].id })
+    }
+  }, [isConnected, chain, network, switchChain])
+
+  const handleConnectWallet = () => {
+    if (network === 'SOL') {
+      connect()
+    } else {
+      open()
+    }
+  }
+
+  const handleBuy = async () => {
+    if (network === 'SOL') {
+      console.log('hello')
+      return
+    }
+
+    if (!chain) {
+      return
+    }
+
+    try {
+      setLoading(true)
+
+      switch (network) {
+        case 'ETH':
+          if (chain.id !== chains[0].id) {
+            await switchChainAsync({ chainId: chains[0].id })
+          }
+          if (activeToken === 0) {
+            const { request } = await simulateContract(config, {
+              abi: EthAbi,
+              address: ETH_ADDRESS as `0x${string}`,
+              functionName: 'buyWithEth',
+              args: [],
+              value: parseEther(payAmount),
+            })
+            const hash = await writeContract(config, request)
+            const result = await waitForTransactionReceipt(config, { hash })
+
+            console.log(result)
+          } else if (activeToken === 1) {
+            const { request } = await simulateContract(config, {
+              abi: EthAbi,
+              address: ETH_ADDRESS as `0x${string}`,
+              functionName: 'buyWithUSDT',
+              args: [parseUnits(payAmount, 6)],
+            })
+            const hash = await writeContract(config, request)
+            const result = await waitForTransactionReceipt(config, { hash })
+
+            console.log(result)
+          }
+          break
+        case 'BNB':
+          if (chain.id !== chains[1].id) {
+            await switchChainAsync({ chainId: chains[1].id })
+          }
+          if (activeToken === 0) {
+            const { request } = await simulateContract(config, {
+              abi: BnbAbi,
+              address: BSC_ADDRESS as `0x${string}`,
+              functionName: 'buyWithEth',
+              args: [],
+              value: parseEther(payAmount),
+            })
+            const hash = await writeContract(config, request)
+            const result = await waitForTransactionReceipt(config, { hash })
+
+            console.log(result)
+          } else if (activeToken === 1) {
+            const { request } = await simulateContract(config, {
+              abi: BnbAbi,
+              address: BSC_ADDRESS as `0x${string}`,
+              functionName: 'buyWithUSDT',
+              args: [parseUnits(payAmount, 6)],
+            })
+            const hash = await writeContract(config, request)
+            const result = await waitForTransactionReceipt(config, { hash })
+
+            console.log(result)
+          }
+          break
+        default:
+          break
+      }
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleChangePayAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+
+    if (isNaN(+value)) {
+      return
+    }
+
+    setPayAmount(value)
+  }
+
+  const handleChangeReceiveAmount = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const value = e.target.value
+
+    if (isNaN(+value)) {
+      return
+    }
+
+    setReceiveAmount(value)
+  }
 
   return (
     <motion.div
@@ -57,10 +218,6 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
         Presale has started
       </h3>
       <div className='flex justify-center gap-8'>
-        <div>
-          <p className='text-center text-xs font-medium'>DAYS</p>
-          <p className='text-center text-3xl font-bold sm:text-2xl'>03</p>
-        </div>
         <div>
           <p className='text-center text-xs font-medium'>HRS</p>
           <p className='text-center text-3xl font-bold sm:text-2xl'>03</p>
@@ -86,7 +243,10 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
                   : 'border-primary/50 bg-transparent text-black',
               )}
               key={tab.label}
-              onClick={() => setActiveTab(key)}
+              onClick={() => {
+                setActiveTab(key)
+                setNetwork(networks[key])
+              }}
             >
               <Image
                 src={tab.icon}
@@ -129,12 +289,16 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
       <p className='text-center text-sm font-bold'>1 $Kitty = $ 0.31</p>
       <div className='flex gap-1'>
         <label htmlFor={id1} className='block w-full space-y-1'>
-          <p className='text-sm'>Pay with ETH</p>
+          <p className='text-sm'>
+            Pay with {tabs[activeTab].tokens[activeToken].label}
+          </p>
           <input
             type='text'
             className='w-full rounded border border-primary/50 px-3 py-2 text-sm transition-all duration-200 ease-in-out focus:border-primary'
             id={id1}
             placeholder='0'
+            value={payAmount}
+            onChange={handleChangePayAmount}
           />
         </label>
         <label htmlFor={id2} className='block w-full space-y-1'>
@@ -144,12 +308,30 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
             className='w-full rounded border border-primary/50 px-3 py-2 text-sm transition-all duration-200 ease-in-out focus:border-primary'
             id={id2}
             placeholder='0'
+            value={receiveAmount}
+            onChange={handleChangeReceiveAmount}
           />
         </label>
       </div>
-      <button className='w-full rounded bg-primary p-4 font-medium text-white sm:p-2'>
-        Connect wallet
-      </button>
+      {network === 'SOL' && !connected ? (
+        <WalletMultiButton>
+          <p className={cx(orbitron.className)}>Connect wallet</p>
+        </WalletMultiButton>
+      ) : (
+        <button
+          className='w-full rounded bg-primary p-4 font-medium text-white disabled:bg-gray-400 sm:p-2'
+          disabled={loading}
+          onClick={() => {
+            ;(connected && network === 'SOL') || isConnected
+              ? handleBuy()
+              : handleConnectWallet()
+          }}
+        >
+          {(connected && network === 'SOL') || isConnected
+            ? 'Buy'
+            : 'Connect wallet'}
+        </button>
+      )}
     </motion.div>
   )
 }
