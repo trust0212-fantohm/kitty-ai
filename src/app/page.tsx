@@ -1,6 +1,5 @@
 'use client'
 
-import AboutSection from '@/components/pages/AboutSection'
 import FAQsSection from '@/components/pages/FAQsSection'
 import HeroSection from '@/components/pages/HeroSection'
 import HowItWorksSection from '@/components/pages/HowItWorksSection'
