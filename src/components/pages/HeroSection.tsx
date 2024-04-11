@@ -23,7 +23,7 @@ const HeroSection: React.FC<Props> = ({ className }) => {
             alt='Kitty Hero'
             width={896}
             height={640}
-            className='absolute bottom-0 right-1/3 w-[58vw] lg:w-[576px] lg:relative lg:right-[inherit] md:w-[480px]'
+            className='absolute bottom-0 right-[35%] w-[58vw] lg:w-[576px] lg:relative lg:right-[inherit] md:w-[480px]'
           />
         </div>
         <PresaleForm className='lg:z-10 md:-mt-28 lg:-mt-40' />
