@@ -144,7 +144,7 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
           presale,
           paymentWallet,
           priceFeed,
-          parseInt(payAmount),
+          +payAmount * 1e9,
         )
         return
       } catch (err) {
