@@ -86,7 +86,7 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
   const id2 = useId()
   const { open } = useWeb3Modal()
   const { isConnected, chain } = useAccount()
-  const { switchChain, switchChainAsync } = useSwitchChain()
+  const { switchChainAsync } = useSwitchChain()
   const [loading, setLoading] = useState<boolean>(false)
   const { connect, connected } = useWallet()
   const [data, setData] = useState<Record<string, any>>({})
@@ -112,18 +112,18 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
     return () => clearInterval(interval)
   }, [])
 
-  useEffect(() => {
-    if (!isConnected || !chain) {
-      return
-    }
+  // useEffect(() => {
+  //   if (!isConnected || !chain) {
+  //     return
+  //   }
 
-    if (network === 'ETH' && chain.id !== chains[0].id) {
-      switchChain({ chainId: chains[0].id })
-    }
-    if (network === 'BNB' && chain.id !== chains[1].id) {
-      switchChain({ chainId: chains[1].id })
-    }
-  }, [isConnected, chain, network, switchChain])
+  //   if (network === 'ETH' && chain.id !== chains[0].id) {
+  //     switchChain({ chainId: chains[0].id })
+  //   }
+  //   if (network === 'BNB' && chain.id !== chains[1].id) {
+  //     switchChain({ chainId: chains[1].id })
+  //   }
+  // }, [isConnected, chain, network, switchChain])
 
   const handleConnectWallet = () => {
     if (network === 'SOL') {
@@ -377,7 +377,8 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
               : handleConnectWallet()
           }}
         >
-          {(connected && network === 'SOL') || isConnected
+          {(connected && network === 'SOL') ||
+          (network !== 'SOL' && isConnected)
             ? 'Buy'
             : 'Connect wallet'}
         </button>
