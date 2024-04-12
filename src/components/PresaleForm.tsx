@@ -1,8 +1,13 @@
 import Image from 'next/image'
-import { useEffect, useId, useRef, useState } from 'react'
-import { useWallet } from '@solana/wallet-adapter-react'
+import { useEffect, useId, useState } from 'react'
+import { AnchorProvider, Program } from '@project-serum/anchor'
+import {
+  useAnchorWallet,
+  useConnection,
+  useWallet,
+} from '@solana/wallet-adapter-react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
-import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets'
+import { PublicKey } from '@solana/web3.js'
 import {
   simulateContract,
   waitForTransactionReceipt,
@@ -18,11 +23,21 @@ import BscLogo from '@/assets/images/bsc.png'
 import EthereumLogo from '@/assets/images/ethereum.png'
 import SolanaLogo from '@/assets/images/solana.png'
 import USDTLogo from '@/assets/images/usdt.png'
-import { BSC_ADDRESS, ETH_ADDRESS } from '@/config/env'
+import {
+  BSC_ADDRESS,
+  ETH_ADDRESS,
+  SOL_ACCOUNT,
+  SOL_PAYMENT_WALLET,
+  SOL_PRICE_FEED,
+  SOL_PROGRAM,
+} from '@/config/env'
 import { fadeInMotion } from '@/config/motion'
 import { chains, config } from '@/config/wallet'
 import BnbAbi from '@/contracts/kitty_bnb.abi.json'
 import EthAbi from '@/contracts/kitty_eth.abi.json'
+import { callBuyTokens } from '@/contracts/lib/methods'
+import { PresaleProgram } from '@/contracts/presale_program'
+import { IDL } from '@/contracts/presale_program'
 
 interface Props {
   className?: string
@@ -42,7 +57,7 @@ const tabs = [
     icon: SolanaLogo,
     tokens: [
       { label: 'SOL', icon: SolanaLogo },
-      { label: 'USDT', icon: USDTLogo },
+      { label: 'USDT', icon: USDTLogo, disabled: true },
     ],
   },
   {
@@ -56,6 +71,10 @@ const tabs = [
 ]
 
 const networks: Array<'ETH' | 'SOL' | 'BNB'> = ['ETH', 'SOL', 'BNB']
+const programAddress = SOL_PROGRAM
+const presale = new PublicKey(SOL_ACCOUNT)
+const paymentWallet = new PublicKey(SOL_PAYMENT_WALLET)
+const priceFeed = new PublicKey(SOL_PRICE_FEED)
 
 const PresaleForm: React.FC<Props> = ({ className }) => {
   const [activeTab, setActiveTab] = useState<number>(0)
@@ -71,6 +90,18 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
   const [loading, setLoading] = useState<boolean>(false)
   const { connect, connected } = useWallet()
   const [data, setData] = useState<Record<string, any>>({})
+  const wallet = useWallet()
+  const anchorWallet = useAnchorWallet()
+  const [program, setProgram] = useState<Program<PresaleProgram> | undefined>()
+  const { connection } = useConnection()
+
+  useEffect(() => {
+    if (!anchorWallet) return
+    const provider = new AnchorProvider(connection, anchorWallet, {
+      preflightCommitment: 'processed',
+    })
+    setProgram(new Program(IDL, programAddress, provider))
+  }, [anchorWallet, connection])
 
   useEffect(() => {
     const interval = setInterval(async () => {
@@ -80,8 +111,6 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
 
     return () => clearInterval(interval)
   }, [])
-
-  console.log(data)
 
   useEffect(() => {
     if (!isConnected || !chain) {
@@ -106,8 +135,23 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
 
   const handleBuy = async () => {
     if (network === 'SOL') {
-      console.log('hello')
-      return
+      setLoading(true)
+      try {
+        if (!program || !wallet) return
+        await callBuyTokens(
+          wallet,
+          program,
+          presale,
+          paymentWallet,
+          priceFeed,
+          parseInt(payAmount),
+        )
+        return
+      } catch (err) {
+        console.log(err)
+      } finally {
+        setLoading(false)
+      }
     }
 
     if (!chain) {
@@ -268,11 +312,12 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
           {tabs[activeTab].tokens.map((token, key) => (
             <button
               className={cx(
-                'flex items-center justify-center gap-2 rounded border p-2 transition-all duration-200 ease-in-out',
+                'flex items-center justify-center gap-2 rounded border p-2 transition-all duration-200 ease-in-out disabled:cursor-not-allowed disabled:opacity-50',
                 activeToken === key
                   ? 'border-primary bg-primary text-white'
                   : 'border-primary/50 bg-transparent text-black',
               )}
+              disabled={token.disabled}
               key={token.label}
               onClick={() => setActiveToken(key)}
             >
