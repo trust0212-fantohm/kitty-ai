@@ -1,25 +1,43 @@
-import Image from 'next/image';
-import { useEffect, useId, useRef, useState } from 'react';
-import { useWallet } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
-import { simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core';
-import { useWeb3Modal } from '@web3modal/wagmi/react';
-import cx from 'classnames';
-import { motion } from 'framer-motion';
-import { parseEther, parseUnits } from 'viem';
-import { useAccount, useSwitchChain } from 'wagmi';
-import { orbitron } from '@/app/fonts';
-import BscLogo from '@/assets/images/bsc.png';
-import EthereumLogo from '@/assets/images/ethereum.png';
-import SolanaLogo from '@/assets/images/solana.png';
-import USDTLogo from '@/assets/images/usdt.png';
-import { BSC_ADDRESS, ETH_ADDRESS } from '@/config/env';
-import { fadeInMotion } from '@/config/motion';
-import { chains, config } from '@/config/wallet';
-import BnbAbi from '@/contracts/kitty_bnb.abi.json';
-import EthAbi from '@/contracts/kitty_eth.abi.json';
-
+import Image from 'next/image'
+import { useEffect, useId, useState } from 'react'
+import { AnchorProvider, Program } from '@project-serum/anchor'
+import {
+  useAnchorWallet,
+  useConnection,
+  useWallet,
+} from '@solana/wallet-adapter-react'
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
+import { PublicKey } from '@solana/web3.js'
+import {
+  simulateContract,
+  waitForTransactionReceipt,
+  writeContract,
+} from '@wagmi/core'
+import { useWeb3Modal } from '@web3modal/wagmi/react'
+import cx from 'classnames'
+import { motion } from 'framer-motion'
+import { parseEther, parseUnits } from 'viem'
+import { useAccount, useSwitchChain } from 'wagmi'
+import { inter, orbitron } from '@/app/fonts'
+import BscLogo from '@/assets/images/bsc.png'
+import EthereumLogo from '@/assets/images/ethereum.png'
+import SolanaLogo from '@/assets/images/solana.png'
+import USDTLogo from '@/assets/images/usdt.png'
+import {
+  BSC_ADDRESS,
+  ETH_ADDRESS,
+  SOL_ACCOUNT,
+  SOL_PAYMENT_WALLET,
+  SOL_PRICE_FEED,
+  SOL_PROGRAM,
+} from '@/config/env'
+import { fadeInMotion } from '@/config/motion'
+import { chains, config } from '@/config/wallet'
+import BnbAbi from '@/contracts/kitty_bnb.abi.json'
+import EthAbi from '@/contracts/kitty_eth.abi.json'
+import { callBuyTokens } from '@/contracts/lib/methods'
+import { PresaleProgram } from '@/contracts/presale_program'
+import { IDL } from '@/contracts/presale_program'
 
 interface Props {
   className?: string
@@ -39,7 +57,7 @@ const tabs = [
     icon: SolanaLogo,
     tokens: [
       { label: 'SOL', icon: SolanaLogo },
-      { label: 'USDT', icon: USDTLogo },
+      { label: 'USDT', icon: USDTLogo, disabled: true },
     ],
   },
   {
@@ -53,6 +71,10 @@ const tabs = [
 ]
 
 const networks: Array<'ETH' | 'SOL' | 'BNB'> = ['ETH', 'SOL', 'BNB']
+const programAddress = SOL_PROGRAM
+const presale = new PublicKey(SOL_ACCOUNT)
+const paymentWallet = new PublicKey(SOL_PAYMENT_WALLET)
+const priceFeed = new PublicKey(SOL_PRICE_FEED)
 
 const PresaleForm: React.FC<Props> = ({ className }) => {
   const [activeTab, setActiveTab] = useState<number>(0)
@@ -64,35 +86,44 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
   const id2 = useId()
   const { open } = useWeb3Modal()
   const { isConnected, chain } = useAccount()
-  const { switchChain, switchChainAsync } = useSwitchChain()
+  const { switchChainAsync } = useSwitchChain()
   const [loading, setLoading] = useState<boolean>(false)
   const { connect, connected } = useWallet()
   const [data, setData] = useState<Record<string, any>>({})
-
-  // useEffect(() => {
-  //   const interval = setInterval(async () => {
-  //     const response = await fetch('http://3.226.79.149:3000/presale_state')
-  //     console.log(response)
-  //     setData(await response.json())
-  //   }, 3000)
-
-  //   return () => clearInterval(interval)
-  // }, [])
-
-  // console.log(data)
+  const wallet = useWallet()
+  const anchorWallet = useAnchorWallet()
+  const [program, setProgram] = useState<Program<PresaleProgram> | undefined>()
+  const { connection } = useConnection()
 
   useEffect(() => {
-    if (!isConnected || !chain) {
-      return
-    }
+    if (!anchorWallet) return
+    const provider = new AnchorProvider(connection, anchorWallet, {
+      preflightCommitment: 'processed',
+    })
+    setProgram(new Program(IDL, programAddress, provider))
+  }, [anchorWallet, connection])
 
-    if (network === 'ETH' && chain.id !== chains[0].id) {
-      switchChain({ chainId: chains[0].id })
-    }
-    if (network === 'BNB' && chain.id !== chains[1].id) {
-      switchChain({ chainId: chains[1].id })
-    }
-  }, [isConnected, chain, network, switchChain])
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const response = await fetch('/api/presale-state')
+      setData(await response.json())
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  // useEffect(() => {
+  //   if (!isConnected || !chain) {
+  //     return
+  //   }
+
+  //   if (network === 'ETH' && chain.id !== chains[0].id) {
+  //     switchChain({ chainId: chains[0].id })
+  //   }
+  //   if (network === 'BNB' && chain.id !== chains[1].id) {
+  //     switchChain({ chainId: chains[1].id })
+  //   }
+  // }, [isConnected, chain, network, switchChain])
 
   const handleConnectWallet = () => {
     if (network === 'SOL') {
@@ -104,8 +135,23 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
 
   const handleBuy = async () => {
     if (network === 'SOL') {
-      console.log('hello')
-      return
+      setLoading(true)
+      try {
+        if (!program || !wallet) return
+        await callBuyTokens(
+          wallet,
+          program,
+          presale,
+          paymentWallet,
+          priceFeed,
+          parseInt(payAmount),
+        )
+        return
+      } catch (err) {
+        console.log(err)
+      } finally {
+        setLoading(false)
+      }
     }
 
     if (!chain) {
@@ -266,11 +312,12 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
           {tabs[activeTab].tokens.map((token, key) => (
             <button
               className={cx(
-                'flex items-center justify-center gap-2 rounded border p-2 transition-all duration-200 ease-in-out',
+                'flex items-center justify-center gap-2 rounded border p-2 transition-all duration-200 ease-in-out disabled:cursor-not-allowed disabled:opacity-50',
                 activeToken === key
                   ? 'border-primary bg-primary text-white'
                   : 'border-primary/50 bg-transparent text-black',
               )}
+              disabled={token.disabled}
               key={token.label}
               onClick={() => setActiveToken(key)}
             >
@@ -287,6 +334,9 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
         </ul>
       </div>
       <p className='text-center text-sm font-bold'>1 $Kitty = $ 0.31</p>
+      <p className={cx('text-center text-sm font-medium', inter.className)}>
+        $USD RAISED: {data.usd_raised} / TOKENS SOLD: {data.tokens_sold}
+      </p>
       <div className='flex gap-1'>
         <label htmlFor={id1} className='block w-full space-y-1'>
           <p className='text-sm'>
@@ -327,7 +377,8 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
               : handleConnectWallet()
           }}
         >
-          {(connected && network === 'SOL') || isConnected
+          {(connected && network === 'SOL') ||
+          (network !== 'SOL' && isConnected)
             ? 'Buy'
             : 'Connect wallet'}
         </button>

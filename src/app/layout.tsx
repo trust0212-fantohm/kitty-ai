@@ -19,13 +19,13 @@ export const metadata: Metadata = {
   },
 }
 
-const initialState = cookieToInitialState(config, headers().get('cookie'))
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const initialState = cookieToInitialState(config, headers().get('cookie'))
+
   return (
     <html lang='en'>
       <body className={orbitron.className}>
