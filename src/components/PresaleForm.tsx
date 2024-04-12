@@ -1,25 +1,28 @@
-import Image from 'next/image';
-import { useEffect, useId, useRef, useState } from 'react';
-import { useWallet } from '@solana/wallet-adapter-react';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
-import { simulateContract, waitForTransactionReceipt, writeContract } from '@wagmi/core';
-import { useWeb3Modal } from '@web3modal/wagmi/react';
-import cx from 'classnames';
-import { motion } from 'framer-motion';
-import { parseEther, parseUnits } from 'viem';
-import { useAccount, useSwitchChain } from 'wagmi';
-import { orbitron } from '@/app/fonts';
-import BscLogo from '@/assets/images/bsc.png';
-import EthereumLogo from '@/assets/images/ethereum.png';
-import SolanaLogo from '@/assets/images/solana.png';
-import USDTLogo from '@/assets/images/usdt.png';
-import { BSC_ADDRESS, ETH_ADDRESS } from '@/config/env';
-import { fadeInMotion } from '@/config/motion';
-import { chains, config } from '@/config/wallet';
-import BnbAbi from '@/contracts/kitty_bnb.abi.json';
-import EthAbi from '@/contracts/kitty_eth.abi.json';
-
+import Image from 'next/image'
+import { useEffect, useId, useRef, useState } from 'react'
+import { useWallet } from '@solana/wallet-adapter-react'
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
+import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets'
+import {
+  simulateContract,
+  waitForTransactionReceipt,
+  writeContract,
+} from '@wagmi/core'
+import { useWeb3Modal } from '@web3modal/wagmi/react'
+import cx from 'classnames'
+import { motion } from 'framer-motion'
+import { parseEther, parseUnits } from 'viem'
+import { useAccount, useSwitchChain } from 'wagmi'
+import { inter, orbitron } from '@/app/fonts'
+import BscLogo from '@/assets/images/bsc.png'
+import EthereumLogo from '@/assets/images/ethereum.png'
+import SolanaLogo from '@/assets/images/solana.png'
+import USDTLogo from '@/assets/images/usdt.png'
+import { BSC_ADDRESS, ETH_ADDRESS } from '@/config/env'
+import { fadeInMotion } from '@/config/motion'
+import { chains, config } from '@/config/wallet'
+import BnbAbi from '@/contracts/kitty_bnb.abi.json'
+import EthAbi from '@/contracts/kitty_eth.abi.json'
 
 interface Props {
   className?: string
@@ -69,17 +72,16 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
   const { connect, connected } = useWallet()
   const [data, setData] = useState<Record<string, any>>({})
 
-  // useEffect(() => {
-  //   const interval = setInterval(async () => {
-  //     const response = await fetch('http://3.226.79.149:3000/presale_state')
-  //     console.log(response)
-  //     setData(await response.json())
-  //   }, 3000)
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const response = await fetch('/api/presale-state')
+      setData(await response.json())
+    }, 3000)
 
-  //   return () => clearInterval(interval)
-  // }, [])
+    return () => clearInterval(interval)
+  }, [])
 
-  // console.log(data)
+  console.log(data)
 
   useEffect(() => {
     if (!isConnected || !chain) {
@@ -287,6 +289,9 @@ const PresaleForm: React.FC<Props> = ({ className }) => {
         </ul>
       </div>
       <p className='text-center text-sm font-bold'>1 $Kitty = $ 0.31</p>
+      <p className={cx('text-center text-sm font-medium', inter.className)}>
+        $USD RAISED: {data.usd_raised} / TOKENS SOLD: {data.tokens_sold}
+      </p>
       <div className='flex gap-1'>
         <label htmlFor={id1} className='block w-full space-y-1'>
           <p className='text-sm'>
